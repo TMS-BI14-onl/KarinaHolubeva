@@ -1,0 +1,20 @@
+Well done!
+
+2.
+c) -1
+You should use the other order for join: Vendor LEFT JOIN ProductVendor.
+Also, WHERE clause is not correct. In the example it's said that you should use column from ON condition (FK)
+
+b) -0.5
+Technically, you did the task, but the idea was totally different.
+Expected answer:
+SELECT Name
+FROM Purchasing.Vendor
+UNION
+SELECT Name
+FROM Sales.Store
+
+c)-0.5
+Why do you need a WHERE clause?
+
+Mark: 8
