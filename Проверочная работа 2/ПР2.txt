@@ -1,0 +1,48 @@
+--Задачи 
+1) Найдите людей и их номера телефонов, код города которых начинается на  4 и заканчивается на 5.
+( таблицы Person.PersonPhone, Person.Person) 
+
+----------------------------------------------------------------
+select p1.[FirstName], p1.[LastName], left (p2.[PhoneNumber],3)
+from [Person].[Person] p1
+join [Person].[PersonPhone] p2 
+on p1.[BusinessEntityID] = p2.[BusinessEntityID]
+where p2.[PhoneNumber] like '4_5%'
+
+----------------------------------------------------------------
+
+
+2) Отнести каждого человека из [HumanResources].[Employee] в свою возрастную категорию:
+Adolescence: 17-20
+Adults: 21-59
+Elderly: 60-75
+Senile: 76-90
+
+
+---------------------------------------------------------------- 
+
+select [BusinessEntityID], (datediff(year, [BirthDate], getdate())) as Years,
+case when (datediff(year, [BirthDate], getdate())) between '17'and '20' then 'Adolescence'
+when (datediff(year, [BirthDate], getdate())) between  '21' and '59' then 'Adults'
+when (datediff(year, [BirthDate], getdate())) between '60' and '75' then 'Elderly'
+when (datediff(year, [BirthDate], getdate())) between '76' and '90' then 'Senile'
+end
+from [HumanResources].[Employee]
+
+
+----------------------------------------------------------------
+
+
+3) Вывести самый дорогой продукт для каждого цвета из [Production].[Product]
+
+
+
+----------------------------------------------------------------
+Select *
+from 
+(select name, color, listprice, max([ListPrice]) over (partition by [Color]) as max_price
+from [Production].[Product])  p
+where [ListPrice] =  max_price
+
+
+----------------------------------------------------------------
