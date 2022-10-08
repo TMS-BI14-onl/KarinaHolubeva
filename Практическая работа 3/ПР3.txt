@@ -1,0 +1,17 @@
+2. 
+1)
+select top 3 id_client, count (id_client) as cnt
+from sale
+group by id_client
+where saledate like ‘%2021%’
+order by cnt desc
+2)
+select id_category, [2017], [2018], [2019], [2020], [2021], [2022]
+from
+(select p1. datepart (year, saleDate) as year, p2. id_category, p2.price
+from sale p1
+join product p2
+on p1.id_product=p2. id_product) p3
+pivot 
+(avg (price)
+for p3. year in [2017], [2018], [2019], [2020], [2021], [2022]) p4
