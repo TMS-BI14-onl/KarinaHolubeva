@@ -1,0 +1,9 @@
+Well done!
+
+-2
+Both conditions 'when matched' and 'when not matched' can be placed in one merge - there is no need to separate them into different commands.
+Also, you have duplicated condition and this duplication is useless:
+... on target.Function_name=source.Barbara
+when matched and (target.Function_name= source.Barbara)...
+
+Mark: 8
