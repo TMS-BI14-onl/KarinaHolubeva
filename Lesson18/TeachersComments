@@ -1,0 +1,33 @@
+Well done!
+
+1
+There's no code word "SELF join", it would be an error. It's just a join.
+
+2
+-0.5
+Can be solved without a subquery.
+
+3
+-1
+WOW
+And can you imagine that the solution is so easy?
+Correct answer: 
+SELECT TOP 1 WITH TIES region_name
+FROM Employees e JOIN Departments d ON dep.department_id=emp.department_id
+	JOIN Locations l ON d.location_id=l.location_id
+	JOIN Countries c ON l.country_id=c.country_id
+	JOIN Regions r ON c.region_id=r.region_id 
+GROUP BY region_name
+ORDER BY COUNT(employee_id) DESC
+
+4
+-0.5
+No subquery needed.
+
+5
+-0.5
+Once again, subquery.
+
+
+
+Mark: 8
